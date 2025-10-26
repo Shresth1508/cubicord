@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cubicord — Connecting Every Corner of Innovation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cubicord - Leading tech solutions provider specializing in website development, app coding, and digital innovation.">
+  <style>
+    :root {
+      --primary-bg: #0a0a0f;
+      --card-bg: #181829;
+      --card-hover: #1f1f38;
+      --accent-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #A78BFA 100%);
+      --accent: #675AF0;
+      --accent-light: #8B7EF7;
+      --text-light: #EEEEFF;
+      --text-faint: #A0AEC0;
+      --border-radius: 20px;
+      --shadow-sm: 0 2px 16px rgba(79, 70, 229, 0.15);
+      --shadow-md: 0 6px 32px rgba(124, 58, 237, 0.25);
+      --shadow-lg: 0 12px 48px rgba(124, 58, 237, 0.35);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Loading Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8vw;
+      box-shadow: 0 4px 24px rgba(36, 32, 94, 0.3);
+      transition: all 0.3s ease;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .navbar.scrolled {
+      padding: 12px 8vw;
+      box-shadow: 0 6px 32px rgba(79, 70, 229, 0.4);
+    }
+    
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-gradient);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      animation: rotateCube 8s ease-in-out infinite;
+      box-shadow: 0 4px 16px rgba(103, 90, 240, 0.4);
+    }
+
+    @keyframes rotateCube {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(90deg) scale(1.1); }
+      50% { transform: rotate(180deg) scale(1); }
+      75% { transform: rotate(270deg) scale(1.1); }
+    }
+    
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 12px rgba(103, 90, 240, 0.3);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 8px 4px;
+      position: relative;
+      transition: color 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-links a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+      border-radius: 4px;
+      transition: width 0.4s ease, left 0.4s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav-contact-btn {
+      background: var(--accent-gradient);
+      color: white !important;
+      padding: 10px 24px !important;
+      border-radius: 30px;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .nav-contact-btn:hover {
+      box-shadow: 0 6px 24px rgba(124, 58, 237, 0.6);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .nav-contact-btn::before {
+      display: none;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    header.hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a3e 50%, #2a2a5e 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-bg-anim {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(79, 70, 229, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 50%);
+      animation: heroGradientMove 15s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes heroGradientMove {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      50% { transform: translate(5%, 5%) scale(1.1); opacity: 0.4; }
+      100% { transform: translate(-5%, -5%) scale(1); opacity: 0.3; }
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(167, 139, 250, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      padding: 0 20px;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    header.hero h2 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 24px;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-out 0.2s both;
+      text-shadow: 0 0 40px rgba(103, 90, 240, 0.5);
+    }
+    
+    header.hero p {
+      color: var(--text-faint);
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 36px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      animation: fadeIn 1s ease-out 0.4s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeIn 1s ease-out 0.6s both;
+    }
+    
+    .cta-btn {
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(79, 70, 229, 0.5);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .cta-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.7);
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent-light);
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+    }
+
+    .cta-btn-secondary:hover {
+      background: rgba(103, 90, 240, 0.1);
+      border-color: var(--accent-light);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 80px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeIn 1s ease-out 0.8s both;
+    }
+
+    .stat-item {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: scale(1.1);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-faint);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-20px); }
+      60% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    .scroll-indicator span {
+      display: block;
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--accent);
+      border-radius: 25px;
+      position: relative;
+    }
+
+    .scroll-indicator span::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: scrollDot 2s infinite;
+    }
+
+    @keyframes scrollDot {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 24px); opacity: 0; }
+    }
+
+    /* Main Content */
+    main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 40px 60px;
+      position: relative;
+    }
+    
+    section {
+      margin-bottom: 120px;
+      position: relative;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(103, 90, 240, 0.15);
+      border: 1px solid rgba(103, 90, 240, 0.3);
+      border-radius: 30px;
+      color: var(--accent-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    h3.section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+      animation: fadeIn 0.8s ease-out 0.2s both;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-faint);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+      animation: fadeIn 0.8s ease-out 0.4s both;
+    }
+
+    /* Preview Section - iPhone Mockup */
+    .preview-container {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 60px;
+    }
+
+    .iphone-mockup {
+      width: 380px;
+      height: 780px;
+      background: #1a1a1a;
+      border-radius: 55px;
+      padding: 12px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8), 0 0 0 2px #2a2a2a;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .iphone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 32px;
+      background: #1a1a1a;
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
+    }
+
+    .iphone-screen {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border-radius: 45px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* iOS Interface */
+    .ios-interface {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ios-status-bar {
+      height: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding-top: 8px;
+    }
+
+    .ios-time { flex: 1; }
+    .ios-notch-space { width: 140px; }
+    .ios-indicators { 
+      flex: 1; 
+      display: flex; 
+      justify-content: flex-end;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .ios-home-screen {
+      padding: 30px 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 28px;
+      justify-content: center;
+      height: calc(100% - 140px);
+      overflow-y: auto;
+    }
+
+    .ios-app-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .ios-app-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .ios-app-label {
+      position: absolute;
+      bottom: -20px;
+      font-size: 10px;
+      color: white;
+      font-weight: 500;
+      text-align: center;
+      width: 60px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .ios-dock {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(30px);
+      border-radius: 25px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* App Screens */
+    .app-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+
+    .app-screen.active {
+      transform: translateX(0);
+    }
+
+    .app-header {
+      height: 60px;
+      background: var(--accent-gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      margin-top: 44px;
+      font-weight: 600;
+    }
+
+    .back-btn {
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      transition: transform 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .app-content {
+      height: calc(100% - 104px);
+      overflow-y: auto;
+      background: #f5f5f5;
+    }
+
+    /* Game App */
+    .game-canvas {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-score {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .game-player {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 20px;
+      background: white;
+    }
+
+    .game-btn {
+      padding: 20px;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(103, 90, 240, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .game-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .game-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Browser App */
+    .browser-bar {
+      background: white;
+      padding: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .browser-url {
+      flex: 1;
+      padding: 10px 16px;
+      background: #f0f0f0;
+      border-radius: 20px;
+      font-size: 14px;
+      border: none;
+      outline: none;
+    }
+
+    .browser-nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+
+    .browser-nav-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .website-preview {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* E-commerce Preview */
+    .ecommerce-preview {
+      background: white;
+    }
+
+    .ecommerce-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .ecommerce-header h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .ecommerce-search {
+      margin: 16px 0;
+      padding: 12px 20px;
+      width: calc(100% - 40px);
+      border-radius: 25px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .product-price {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* Portfolio Preview */
+    .portfolio-preview {
+      background: #1a1a2e;
+      color: white;
+    }
+
+    .portfolio-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .portfolio-hero h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-hero p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .portfolio-projects {
+      padding: 20px;
+    }
+
+    .portfolio-project {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .portfolio-project h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--accent-light);
+    }
+
+    .portfolio-project p {
+      font-size: 13px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Preview Info Cards */
+    .preview-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .preview-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .preview-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 28px;
+      border: 1px solid rgba(103, 90, 240, 0.2);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .preview-card:hover {
+      transform: translateX(8px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .preview-card-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--accent-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(103, 90, 240, 0.4);
+    }
+
+    .preview-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--text-light);
+    }
+
+    .preview-card p {
+      color: var(--text-faint);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(103, 90, 240, 0.2);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(103, 90, 240, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .about-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .about-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--accent-gradient);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(103, 90, 240, 0.4);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(103, 90, 240, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 12px 32px rgba(103, 90, 240, 0.6); }
+    }
+
+    .about-card h4 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--text-light);
+      font-weight: 700;
+    }
+
+    .about-card p {
+      color: var(--text-faint);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .about-list {
+      margin-top: 20px;
+    }
+
+    .about-list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(103, 90, 240, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .about-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .about-list-item:hover {
+      padding-left: 8px;
+      color: var(--accent-light);
+    }
+
+    .about-list-item .icon {
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    .about-list-item strong {
+      color: var(--accent-light);
+      margin-right: 8px;
+      min-width: 100px;
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: 1px solid rgba(103, 90, 240, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      bottom: -100%;
+      right: -100%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(103, 90, 240, 0.15) 0%, transparent 70%);
+      transition: all 0.6s ease;
+    }
+
+    .service-card:hover::after {
+      bottom: -50%;
+      right: -50%;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+      background: var(--card-hover);
+    }
+    
+    .service-card .icon {
+      font-size: 3rem;
+      margin-bottom: 24px;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+    
+    .service-card strong {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: var(--text-light);
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    .service-card:hover strong {
+      color: var(--accent-light);
+    }
+    
+    .service-card p {
+      color: var(--text-faint);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .service-features {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .service-features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-features li {
+      padding: 8px 0;
+      color: var(--text-faint);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service-features li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    
+    .dev-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 40px 32px;
+      width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      border: 1px solid rgba(103, 90, 240, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dev-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(103, 90, 240, 0.2) 180deg, transparent 360deg);
+      animation: rotateGradient 6s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes rotateGradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .dev-card:hover::before {
+      opacity: 1;
+    }
+    
+    .dev-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    
+    .avatar {
+      background: var(--accent-gradient);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 40px rgba(103, 90, 240, 0.5);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-card:hover .avatar {
+      transform: scale(1.1) rotate(360deg);
+      box-shadow: 0 16px 56px rgba(103, 90, 240, 0.7);
+    }
+    
+    .dev-card .dev-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .dev-card .dev-title {
+      font-size: 1.05rem;
+      color: var(--accent-light);
+      margin-bottom: 6px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .dev-card .dev-exp {
+      font-size: 1rem;
+      color: var(--text-faint);
+      margin-bottom: 20px;
+      padding: 8px 20px;
+      background: rgba(103, 90, 240, 0.1);
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .dev-card .dev-email a {
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 600;
+      word-break: break-all;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-card .dev-email a:hover {
+      color: var(--accent-light);
+      text-decoration: underline;
+    }
+
+    .dev-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(103, 90, 240, 0.15);
+      border: 1px solid rgba(103, 90, 240, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .social-icon:hover {
+      background: var(--accent-gradient);
+      transform: translateY(-4px) rotate(360deg);
+      box-shadow: 0 8px 24px rgba(103, 90, 240, 0.5);
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .price-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 2px solid rgba(103, 90, 240, 0.2);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .price-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--accent-gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .price-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .price-card.featured {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: scale(1.05);
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+    }
+    
+    .price-card.featured::after {
+      content: "⭐ MOST POPULAR";
+      position: absolute;
+      top: 20px;
+      right: -30px;
+      background: var(--accent-gradient);
+      color: white;
+      padding: 6px 40px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 16px rgba(103, 90, 240, 0.5);
+    }
+    
+    .price-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .price-card.featured:hover {
+      transform: translateY(-12px) scale(1.08);
+    }
+    
+    .price-card .tier {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--accent-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .price-card .price {
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 0.95rem;
+      color: var(--text-faint);
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+    
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      width: 100%;
+    }
+    
+    .price-card ul li {
+      padding: 12px 0;
+      color: var(--text-faint);
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(103, 90, 240, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .price-card ul li:hover {
+      color: var(--text-light);
+      padding-left: 8px;
+    }
+
+    .price-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .price-card ul li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    
+    .price-card .btn {
+      margin-top: auto;
+      padding: 14px 32px;
+      width: 100%;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: white;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    
+    .price-card .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(124, 58, 237, 0.6);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(103, 90, 240, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(103, 90, 240, 0.1) 0%, transparent 70%);
+      animation: rotateGradient 8s linear infinite;
+    }
+
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 40px rgba(103, 90, 240, 0.5);
+      animation: pulse 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section h4 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--text-light);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section p {
+      font-size: 1.1rem;
+      color: var(--text-faint);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section a {
+      color: var(--accent-light);
+      font-size: 1.4rem;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 12px;
+      word-break: break-all;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      padding: 4px 8px;
+    }
+
+    .contact-section a:hover {
+      color: white;
+      text-shadow: 0 0 20px rgba(103, 90, 240, 0.8);
+      transform: scale(1.05);
+    }
+
+    .contact-methods {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-method {
+      padding: 16px 28px;
+      background: rgba(103, 90, 240, 0.1);
+      border: 1px solid rgba(103, 90, 240, 0.3);
+      border-radius: 50px;
+      color: var(--text-light);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .contact-method:hover {
+      background: var(--accent-gradient);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(103, 90, 240, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      color: var(--text-faint);
+      padding: 60px 40px 30px;
+      background: linear-gradient(180deg, rgba(10, 10, 15, 0) 0%, rgba(10, 10, 15, 0.8) 50%, #090914 100%);
+      border-top: 1px solid rgba(103, 90, 240, 0.2);
+      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h2 {
+      font-size: 1.8rem;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      font-weight: 900;
+    }
+
+    .footer-brand p {
+      color: var(--text-faint);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .footer-section h4 {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .footer-links a {
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: inline-block;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-light);
+      padding-left: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(103, 90, 240, 0.1);
+      font-size: 0.95rem;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    
+    .social-icons a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(103, 90, 240, 0.15);
+      border: 1px solid rgba(103, 90, 240, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-icons a:hover {
+      background: var(--accent-gradient);
+      transform: translateY(-4px) rotate(360deg);
+      box-shadow: 0 8px 24px rgba(103, 90, 240, 0.5);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .preview-container {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 16px 5vw;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 16px 5vw;
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      header.hero h2 {
+        font-size: 2.5rem;
+      }
+
+      header.hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .cta-btn {
+        width: 100%;
+      }
+
+      .hero-stats {
+        gap: 30px;
+      }
+
+      h3.section-title {
+        font-size: 2.2rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card.featured {
+        transform: scale(1);
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-links {
+        align-items: center;
+      }
+
+      main {
+        padding: 80px 20px 40px;
+      }
+
+      section {
+        margin-bottom: 80px;
+      }
+
+      .iphone-mockup {
+        transform: scale(0.85);
+      }
+    }
+
+    @media (max-width: 480px) {
+      header.hero h2 {
+        font-size: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .contact-section {
+        padding: 40px 24px;
+      }
+
+      .dev-card {
+        width: 100%;
+      }
+    }
+
+    /* Utility Classes */
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Scroll Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <div class="logo-icon">C</div>
+      <h1>Cubicord</h1>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#preview">Preview</a>
+      <a href="#products">Services</a>
+      <a href="#developers">Team</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="nav-contact-btn">Contact</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="hero-bg-anim"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <h2>Cubicord — Connecting Every Corner of Innovation</h2>
+      <p>Empowering creators and innovators with cutting-edge tech solutions. From stunning websites to powerful apps, we transform your vision into digital reality.</p>
+      <div class="hero-buttons">
+        <button class="cta-btn" onclick="scrollToSection('preview')">See Live Preview</button>
+        <button class="cta-btn cta-btn-secondary" onclick="scrollToSection('contact')">Get Started</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Support Available</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator" onclick="scrollToSection('preview')">
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Preview Section -->
+    <section id="preview" class="reveal">
+      <div class="section-header">
+        <span class="section-label">Interactive Demo</span>
+        <h3 class="section-title">Live Preview</h3>
+        <p class="section-subtitle">Experience our work in action - tap any app on the iPhone to see live demos</p>
+      </div>
+      <div class="preview-container">
+        <!-- iPhone Mockup -->
+        <div class="iphone-mockup">
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+            <div class="ios-interface" id="iosInterface">
+              <!-- iOS Status Bar -->
+              <div class="ios-status-bar">
+                <div class="ios-time">9:41</div>
+                <div class="ios-notch-space"></div>
+                <div class="ios-indicators">
+                  <span>📶</span>
+                  <span>📡</span>
+                  <span>🔋</span>
+                </div>
+              </div>
+
+              <!-- iOS Home Screen -->
+              <div class="ios-home-screen" id="homeScreen">
+                <div class="ios-app-icon" onclick="openApp('game')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                  🎮
+                  <div class="ios-app-label">Cube Runner</div>
+                </div>
+                <div class="ios-app-icon" onclick="openApp('browser')" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                  🌐
+                  <div class="ios-app-label">Browser</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                  📧
+                  <div class="ios-app-label">Mail</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                  📷
+                  <div class="ios-app-label">Photos</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                  🎵
+                  <div class="ios-app-label">Music</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                  ⚙️
+                  <div class="ios-app-label">Settings</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                  📱
+                  <div class="ios-app-label">App Store</div>
+                </div>
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                  💬
+                  <div class="ios-app-label">Messages</div>
+                </div>
+              </div>
+
+              <!-- iOS Dock -->
+              <div class="ios-dock">
+                <div class="ios-app-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); width: 60px; height: 60px;">📞</div>
+                <div class="ios-app-icon" onclick="openApp('browser')" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); width: 60px; height: 60px;">🌐</div>
+                <div class="ios-app-icon" onclick="openApp('game')" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); width: 60px; height: 60px;">🎮</div>
+              </div>
+
+              <!-- Game App Screen -->
+              <div class="app-screen" id="gameApp">
+                <div class="app-header">
+                  <div class="back-btn" onclick="closeApp()">←</div>
+                  <div>Cube Runner Game</div>
+                  <div style="width: 32px;"></div>
+                </div>
+                <div class="app-content">
+                  <div class="game-canvas" id="gameCanvas">
+                    <div class="game-score">Score: <span id="gameScore">0</span></div>
+                    <div class="game-player" id="gamePlayer" style="left: 50%; bottom: 50px;"></div>
+                    <h3 style="margin-bottom: 12px;">🎮 Cube Runner</h3>
+                    <p style="opacity: 0.9;">Use controls below to move!</p>
+                  </div>
+                  <div class="game-controls">
+                    <div></div>
+                    <button class="game-btn" onclick="movePlayer('up')">⬆️</button>
+                    <div></div>
+                    <button class="game-btn" onclick="movePlayer('left')">⬅️</button>
+                    <button class="game-btn" onclick="addScore()">🎯</button>
+                    <button class="game-btn" onclick="movePlayer('right')">➡️</button>
+                    <div></div>
+                    <button class="game-btn" onclick="movePlayer('down')">⬇️</button>
+                    <div></div>
+                  </div>
+                  <div style="padding: 20px; background: white; text-align: center;">
+                    <h4 style="color: #333; margin-bottom: 12px;">Custom Game Development</h4>
+                    <p style="color: #666; font-size: 14px; line-height: 1.6;">
+                      We create engaging mobile games with smooth controls and beautiful graphics. From casual puzzles to action-packed adventures!
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Browser App Screen -->
+              <div class="app-screen" id="browserApp">
+                <div class="app-header">
+                  <div class="back-btn" onclick="closeApp()">←</div>
+                  <div>Cubicord Browser</div>
+                  <div style="width: 32px;"></div>
+                </div>
+                <div class="app-content">
+                  <div class="browser-bar">
+                    <button class="browser-nav-btn" onclick="changeSite('prev')">←</button>
+                    <input type="text" class="browser-url" id="browserUrl" readonly value="cubicord.shop">
+                    <button class="browser-nav-btn" onclick="changeSite('next')">→</button>
+                  </div>
+                  <div class="website-preview" id="websitePreview">
+                    <!-- E-commerce Site -->
+                    <div class="ecommerce-preview site-content active">
+                      <div class="ecommerce-header">
+                        <h2>🛍️ Cubicord Shop</h2>
+                        <p>Premium E-commerce Platform</p>
+                        <input type="text" class="ecommerce-search" placeholder="Search products...">
+                      </div>
+                      <div class="product-grid">
+                        <div class="product-card">
+                          <div class="product-image">👕</div>
+                          <div class="product-info">
+                            <div class="product-name">Premium T-Shirt</div>
+                            <div class="product-price">$29.99</div>
+                          </div>
+                        </div>
+                        <div class="product-card">
+                          <div class="product-image">👟</div>
+                          <div class="product-info">
+                            <div class="product-name">Sports Shoes</div>
+                            <div class="product-price">$89.99</div>
+                          </div>
+                        </div>
+                        <div class="product-card">
+                          <div class="product-image">🎧</div>
+                          <div class="product-info">
+                            <div class="product-name">Wireless Headphones</div>
+                            <div class="product-price">$149.99</div>
+                          </div>
+                        </div>
+                        <div class="product-card">
+                          <div class="product-image">⌚</div>
+                          <div class="product-info">
+                            <div class="product-name">Smart Watch</div>
+                            <div class="product-price">$299.99</div>
+                          </div>
+                        </div>
+                        <div class="product-card">
+                          <div class="product-image">💼</div>
+                          <div class="product-info">
+                            <div class="product-name">Leather Bag</div>
+                            <div class="product-price">$119.99</div>
+                          </div>
+                        </div>
+                        <div class="product-card">
+                          <div class="product-image">📱</div>
+                          <div class="product-info">
+                            <div class="product-name">Phone Case</div>
+                            <div class="product-price">$19.99</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Portfolio Site -->
+                    <div class="portfolio-preview site-content">
+                      <div class="portfolio-hero">
+                        <h2>🎨 John Designer</h2>
+                        <p>Creative Portfolio & Showcase</p>
+                      </div>
+                      <div class="portfolio-projects">
+                        <div class="portfolio-project">
+                          <h4>🖼️ Brand Identity Design</h4>
+                          <p>Complete brand identity package including logo design, color palette, and brand guidelines for tech startup.</p>
+                        </div>
+                        <div class="portfolio-project">
+                          <h4>📱 Mobile App UI/UX</h4>
+                          <p>User interface and experience design for fitness tracking mobile application with over 50 screens.</p>
+                        </div>
+                        <div class="portfolio-project">
+                          <h4>🌐 Website Redesign</h4>
+                          <p>Modern website redesign for e-commerce platform improving conversion rate by 45%.</p>
+                        </div>
+                        <div class="portfolio-project">
+                          <h4>🎬 Motion Graphics</h4>
+                          <p>Animated explainer video and motion graphics for product launch campaign.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Info -->
+        <div class="preview-info">
+          <div class="preview-cards">
+            <div class="preview-card" onclick="openApp('game')">
+              <div class="preview-card-icon">🎮</div>
+              <h4>Interactive Games</h4>
+              <p>Fully functional mobile games with smooth controls, scoring systems, and engaging gameplay. Built with modern frameworks for optimal performance.</p>
+            </div>
+            <div class="preview-card" onclick="openApp('browser'); setTimeout(() => changeSite('ecommerce'), 500)">
+              <div class="preview-card-icon">🛍️</div>
+              <h4>E-commerce Platforms</h4>
+              <p>Complete online shopping experiences with product catalogs, search functionality, and seamless checkout processes.</p>
+            </div>
+            <div class="preview-card" onclick="openApp('browser'); setTimeout(() => changeSite('portfolio'), 500)">
+              <div class="preview-card-icon">🎨</div>
+              <h4>Portfolio Websites</h4>
+              <p>Beautiful portfolio showcases to highlight your work, skills, and achievements with stunning visual designs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+      <div class="section-header">
+        <span class="section-label">Who We Are</span>
+        <h3 class="section-title">About Cubicord</h3>
+        <p class="section-subtitle">Building the future of digital innovation, one project at a time</p>
+      </div>
+      <div class="about-content">
+        <div class="about-card">
+          <div class="about-icon">🚀</div>
+          <h4>Our Mission</h4>
+          <p>Empowering creators and innovators with exceptional tech solutions that transform ideas into reality. We believe in the power of technology to create meaningful change.</p>
+          <div class="about-list">
+            <div class="about-list-item">
+              <span class="icon">👤</span>
+              <div><strong>Founder:</strong> Shresth Tripathi</div>
+            </div>
+            <div class="about-list-item">
+              <span class="icon">📅</span>
+              <div><strong>Founded:</strong> 26 October 2025</div>
+            </div>
+            <div class="about-list-item">
+              <span class="icon">🎯</span>
+              <div><strong>Focus:</strong> Innovation & Excellence</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">💡</div>
+          <h4>Our Vision</h4>
+          <p>To become the world's most trusted technology partner for businesses and creators, delivering cutting-edge solutions that drive growth and innovation.</p>
+          <div class="about-list">
+            <div class="about-list-item">
+              <span class="icon">⚡</span>
+              <div><strong>Speed:</strong> Rapid development & deployment</div>
+            </div>
+            <div class="about-list-item">
+              <span class="icon">✨</span>
+              <div><strong>Quality:</strong> Premium craftsmanship</div>
+            </div>
+            <div class="about-list-item">
+              <span class="icon">🤝</span>
+              <div><strong>Support:</strong> Dedicated client care</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="products" class="reveal">
+      <div class="section-header">
+        <span class="section-label">What We Offer</span>
+        <h3 class="section-title">Our Services</h3>
+        <p class="section-subtitle">Comprehensive digital solutions tailored to your unique needs</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🏠</div>
+          <strong>Build Your Homepage</strong>
+          <p>Create a stunning single-page presence that captures your brand essence and converts visitors into customers.</p>
+          <div class="service-features">
+            <ul>
+              <li>Modern, responsive design</li>
+              <li>Fast loading speed</li>
+              <li>SEO optimized</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">🌐</div>
+          <strong>Build Your Website</strong>
+          <p>Full-featured websites tailored to your needs, from business sites to e-commerce platforms with all the bells and whistles.</p>
+          <div class="service-features">
+            <ul>
+              <li>Multi-page architecture</li>
+              <li>CMS integration</li>
+              <li>E-commerce ready</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">🎨</div>
+          <strong>Portfolio Builder</strong>
+          <p>Showcase your work with elegant, professional portfolio websites that highlight your skills and attract clients.</p>
+          <div class="service-features">
+            <ul>
+              <li>Gallery & showcase</li>
+              <li>Project management</li>
+              <li>Contact integration</li>
+            </ul>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="icon">📱</div>
+          <strong>App Development</strong>
+          <p>Custom mobile and web applications built with modern technology stacks, scalable and secure.</p>
+          <div class="service-features">
+            <ul>
+              <li>Cross-platform apps</li>
+              <li>Cloud integration</li>
+              <li>API development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="developers" class="reveal">
+      <div class="section-header">
+        <span class="section-label">Meet The Team</span>
+        <h3 class="section-title">Our Experts</h3>
+        <p class="section-subtitle">Passionate professionals dedicated to your success</p>
+      </div>
+      <div class="team-grid">
+        <div class="dev-card">
+          <div class="avatar">ST</div>
+          <div class="dev-name">Shresth Tripathi</div>
+          <div class="dev-title">Founder & Lead Developer</div>
+          <div class="dev-exp">💼 2 Years Experience</div>
+          <div class="dev-email">
+            <a href="mailto:shresthtripathi2009@gmail.com">shresthtripathi2009@gmail.com</a>
+          </div>
+          <div class="dev-social">
+            <div class="social-icon" title="LinkedIn">🔗</div>
+            <div class="social-icon" title="GitHub">💻</div>
+            <div class="social-icon" title="Twitter">🐦</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="reveal">
+      <div class="section-header">
+        <span class="section-label">Flexible Plans</span>
+        <h3 class="section-title">Pricing Plans</h3>
+        <p class="section-subtitle">Choose the perfect plan for your project needs</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="tier">Basic Plan</div>
+          <div class="price">$80</div>
+          <div class="price-period">Starting price</div>
+          <ul>
+            <li>Single page website</li>
+            <li>Responsive design</li>
+            <li>Basic SEO setup</li>
+            <li>2 revision rounds</li>
+            <li>1 month support</li>
+          </ul>
+          <button class="btn" onclick="scrollToSection('contact')">Get Started</button>
+        </div>
+        <div class="price-card featured">
+          <div class="tier">Premium Plan</div>
+          <div class="price">$150</div>
+          <div class="price-period">Starting price</div>
+          <ul>
+            <li>Multi-page website</li>
+            <li>Advanced features</li>
+            <li>Premium support</li>
+            <li>Unlimited revisions</li>
+            <li>Full SEO optimization</li>
+            <li>3 months support</li>
+          </ul>
+          <button class="btn" onclick="scrollToSection('contact')">Get Started</button>
+        </div>
+        <div class="price-card">
+          <div class="tier">Custom Plan</div>
+          <div class="price">Custom</div>
+          <div class="price-period">Tailored to your needs</div>
+          <ul>
+            <li>Fully customized solution</li>
+            <li>App development</li>
+            <li>Enterprise support</li>
+            <li>Dedicated project manager</li>
+            <li>Priority development</li>
+            <li>Lifetime support</li>
+          </ul>
+          <button class="btn" onclick="scrollToSection('contact')">Contact Us</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+      <div class="section-header">
+        <span class="section-label">Let's Connect</span>
+        <h3 class="section-title">Get In Touch</h3>
+        <p class="section-subtitle">Ready to start your project? We're here to help!</p>
+      </div>
+      <div class="contact-container">
+        <div class="contact-section">
+          <div class="contact-icon">✉️</div>
+          <h4>Let's Build Something Amazing</h4>
+          <p>Have a project in mind? Get in touch and let's discuss how we can bring your vision to life.</p>
+          <a href="mailto:cubicord@gmail.com">cubicord@gmail.com</a>
+          <div class="contact-methods">
+            <div class="contact-method" onclick="window.location.href='mailto:cubicord@gmail.com'">📧 Email Us</div>
+            <div class="contact-method">💬 Live Chat</div>
+            <div class="contact-method">📞 Schedule Call</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h2>Cubicord</h2>
+        <p>Connecting every corner of innovation. We transform ideas into powerful digital solutions that drive growth and success.</p>
+        <div class="social-icons">
+          <a href="#" title="LinkedIn">🔗</a>
+          <a href="#" title="GitHub">💻</a>
+          <a href="#" title="Twitter">🐦</a>
+          <a href="#" title="Instagram">📷</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Services</h4>
+        <div class="footer-links">
+          <a href="#products">Homepage Design</a>
+          <a href="#products">Website Development</a>
+          <a href="#products">Portfolio Builder</a>
+          <a href="#products">App Development</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="#about">About Us</a>
+          <a href="#developers">Our Team</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <div class="footer-links">
+          <a href="#">Blog</a>
+          <a href="#">Case Studies</a>
+          <a href="#">Documentation</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Cubicord. All rights reserved. | Crafted with ❤️ by Shresth Tripathi</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Smooth Scrolling
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navHeight - 20;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Particle Animation
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Scroll Reveal Animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    // iOS App Functions
+    let currentApp = null;
+    let currentSiteIndex = 0;
+
+    function openApp(appName) {
+      closeApp();
+      setTimeout(() => {
+        currentApp = appName;
+        const appElement = document.getElementById(appName + 'App');
+        if (appElement) {
+          appElement.classList.add('active');
+        }
+      }, 100);
+    }
+
+    function closeApp() {
+      if (currentApp) {
+        const appElement = document.getElementById(currentApp + 'App');
+        if (appElement) {
+          appElement.classList.remove('active');
+        }
+        currentApp = null;
+      }
+    }
+
+    // Game Functions
+    let score = 0;
+    let playerPos = { x: 50, y: 50 };
+
+    function movePlayer(direction) {
+      const player = document.getElementById('gamePlayer');
+      const canvas = document.getElementById('gameCanvas');
+      const maxX = canvas.offsetWidth - 50;
+      const maxY = canvas.offsetHeight - 50;
+
+      switch(direction) {
+        case 'up':
+          playerPos.y = Math.max(0, playerPos.y - 10);
+          break;
+        case 'down':
+          playerPos.y = Math.min(maxY, playerPos.y + 10);
+          break;
+        case 'left':
+          playerPos.x = Math.max(0, playerPos.x - 10);
+          break;
+        case 'right':
+          playerPos.x = Math.min(maxX, playerPos.x + 10);
+          break;
+      }
+
+      player.style.left = playerPos.x + 'px';
+      player.style.bottom = playerPos.y + 'px';
+    }
+
+    function addScore() {
+      score += 10;
+      document.getElementById('gameScore').textContent = score;
+      
+      // Visual feedback
+      const player = document.getElementById('gamePlayer');
+      player.style.transform = 'scale(1.3)';
+      setTimeout(() => {
+        player.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    // Browser Functions
+    const sites = [
+      {
+        name: 'cubicord.shop',
+        type: 'ecommerce'
+      },
+      {
+        name: 'portfolio.design',
+        type: 'portfolio'
+      }
+    ];
+
+    function changeSite(direction) {
+      if (direction === 'next') {
+        currentSiteIndex = (currentSiteIndex + 1) % sites.length;
+      } else if (direction === 'prev') {
+        currentSiteIndex = (currentSiteIndex - 1 + sites.length) % sites.length;
+      } else if (direction === 'ecommerce') {
+        currentSiteIndex = 0;
+      } else if (direction === 'portfolio') {
+        currentSiteIndex = 1;
+      }
+
+      const site = sites[currentSiteIndex];
+      document.getElementById('browserUrl').value = site.name;
+
+      // Hide all sites
+      document.querySelectorAll('.site-content').forEach(el => {
+        el.style.display = 'none';
+      });
+
+      // Show selected site
+      const siteElement = document.querySelector(`.${site.type}-preview`);
+      if (siteElement) {
+        siteElement.style.display = 'block';
+      }
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      revealOnScroll();
+      
+      // Initialize browser with first site
+      changeSite('ecommerce');
+    });
+
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Counter Animation for Stats
+    function animateCounter(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        if (element.textContent.includes('%')) {
+          element.textContent = Math.floor(progress * (end - start) + start) + '%';
+        } else if (element.textContent.includes('+')) {
+          element.textContent = Math.floor(progress * (end - start) + start) + '+';
+        } else {
+          element.textContent = Math.floor(progress * (end - start) + start);
+        }
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Trigger counter animation when stats are visible
+    let statsAnimated = false;
+    window.addEventListener('scroll', () => {
+      if (!statsAnimated) {
+        const stats = document.querySelector('.hero-stats');
+        if (stats && stats.getBoundingClientRect().top < window.innerHeight) {
+          const statNumbers = document.querySelectorAll('.stat-number');
+          animateCounter(statNumbers[0], 0, 50, 2000);
+          animateCounter(statNumbers[1], 0, 100, 2000);
+          statsAnimated = true;
+        }
+      }
+    });
+
+    // Add smooth hover effect to cards
+    document.querySelectorAll('.service-card, .price-card, .dev-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Add parallax effect to hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero-content');
+      if (hero && scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        hero.style.opacity = 1 - (scrolled / window.innerHeight);
+      }
+    });
+  </script>
+</body>
+</html>
